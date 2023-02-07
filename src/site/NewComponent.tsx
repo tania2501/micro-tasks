@@ -1,6 +1,4 @@
 import React from "react";
-import { v4 } from 'uuid'
-
 
 type NewComponentType = {
   students: StudentsType[];
@@ -22,7 +20,7 @@ export const NewComponent = (props: NewComponentType) => {
     <div>
       <ul>
         {props.students.map(
-          (objectFromStudentsArray: StudentsType, index: number) => {
+          (objectFromStudentsArray: StudentsType) => {
             return (
               <li key={objectFromStudentsArray.id}>
                 <span>{objectFromStudentsArray.name}</span>
@@ -32,7 +30,7 @@ export const NewComponent = (props: NewComponentType) => {
           }
         )}
       </ul>
-      {props.cars.map((objectFromCarsArray: CarsType) => {
+      {props.cars.map((objectFromCarsArray: CarsType, index: number) => {
         return (
           <table>
             <thead>
@@ -43,8 +41,8 @@ export const NewComponent = (props: NewComponentType) => {
             </thead>
             <tbody>
               <tr>
-                <td key={v4()}>{objectFromCarsArray.manufacturer}</td>
-                <td key={v4()}>{objectFromCarsArray.model}</td>
+                <td key={index + 1}>{objectFromCarsArray.manufacturer}</td>
+                <td key={index + 2}>{objectFromCarsArray.model}</td>
               </tr>
             </tbody>
           </table>
