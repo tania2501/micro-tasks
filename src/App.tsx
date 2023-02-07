@@ -8,6 +8,10 @@ import { NewComponent } from "./site/NewComponent";
 import { Button } from "./site/Button";
 import { Banknotes } from "./site/Banknotes";
 import { FilterButtonsType } from "./site/Banknotes";
+import { Input } from "./site/Input";
+import { FullInputType } from './site/Input';
+import { MainInput } from "./site/MainInput";
+import { InputButton } from "./site/InputButton";
 
 function App() {
   /// Micro Task 1
@@ -82,7 +86,19 @@ if (filter === "Ruble") {
 const clickFilter = (name: FilterButtonsType) => {
   setFilter(name)
 }
+////Micro task 6
 
+let [message, setMessage] = useState([
+  {message: 'message1'},
+  {message: 'message2'},
+  {message: 'message3'},
+]);
+const addMessage =(title:string)=> {
+  let newMessage = {message: title}
+  setMessage([newMessage,...message])
+  setTitle('')
+}
+let [title, setTitle] = useState('');
 
   return (
     <div>
@@ -102,6 +118,14 @@ const clickFilter = (name: FilterButtonsType) => {
       <Button name={"number"} callback={onClickHandler} />
       <Button name={"0"} callback={onClickHandler2} />
       <Banknotes title={newMoney} button={clickFilter}/>
+      <MainInput setTitle={setTitle} title={title}/>
+      <InputButton name="+" add={()=>{addMessage(title)}}/>
+      {message.map((el:{message:string}, index: number)=>{
+          return (
+            <div key={index}>{el.message}</div>
+          )
+        })}
+
     </div>
   );
 }
